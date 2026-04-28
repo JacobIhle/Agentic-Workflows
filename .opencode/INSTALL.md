@@ -6,7 +6,7 @@
 
 ## Installation
 
-Add the plugin to the `plugin` array in your `opencode.json` (global or project-level):
+Add the plugin to the `plugin` array in your project's `opencode.json`:
 
 ```json
 {
@@ -15,6 +15,8 @@ Add the plugin to the `plugin` array in your `opencode.json` (global or project-
 ```
 
 Restart OpenCode.
+
+This plugin is intended to be installed per project, not globally.
 
 ## What gets installed
 

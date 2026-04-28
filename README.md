@@ -12,6 +12,8 @@ It packages the same development workflow for OpenCode:
 
 See `.opencode/INSTALL.md`.
 
+Install it at the project level in the consuming repository's `opencode.json`.
+
 ## What's in the plugin
 
 ### Agents
