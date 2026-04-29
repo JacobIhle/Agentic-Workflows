@@ -1,8 +1,8 @@
 {
-  "name": "op-dev-superpowers",
+  "name": "agentic-workflows",
   "version": "0.1.0",
   "type": "module",
-  "main": ".opencode/plugins/op-dev-superpowers.js",
+  "main": ".opencode/plugins/agentic-workflows.js",
   "scripts": {
     "test": "node --test tests/*.test.mjs"
   }

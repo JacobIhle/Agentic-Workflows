@@ -1,8 +1,8 @@
-# OP Dev Superpowers
+# agentic-workflows
 
-An OpenCode plugin version of the `CC-Dev-Superpowers` methodology.
+Portable development workflows for OpenCode and Claude Code.
 
-It packages the same development workflow for OpenCode:
+It provides a shared development workflow across both toolchains:
 
 - tests first
 - clean-context code review
@@ -10,9 +10,19 @@ It packages the same development workflow for OpenCode:
 
 ## Install
 
+### OpenCode
+
 See `.opencode/INSTALL.md`.
 
 Install it at the project level in the consuming repository's `opencode.json`.
+
+### Claude Code
+
+Install the plugin from the repository:
+
+```text
+/plugin install https://github.com/JacobIhle/agentic-workflows
+```
 
 ## What's in the plugin
 
@@ -29,11 +39,11 @@ Install it at the project level in the consuming repository's `opencode.json`.
 - `writing-documentation` - README and ADR conventions.
 - `maintaining-documentation` - used by the docs-maintainer agent for in-sync edits.
 
-## OpenCode adaptation
+## Platform support
 
-The original Claude Code repo used Claude plugin packaging. This repo keeps the methodology content, but exposes it through OpenCode's plugin system:
+This repo keeps the shared methodology content in `skills/` and `agents/`, then exposes it through both plugin systems:
 
-- `skills/` is registered through the plugin at runtime
-- `agents/*.md` are loaded into OpenCode agent config at runtime
+- OpenCode: `skills/` is registered through the plugin at runtime and `agents/*.md` are loaded into OpenCode agent config.
+- Claude Code: `.claude-plugin/`, `settings.json`, and `CLAUDE.md` provide the Claude-compatible plugin layer.
 
-No `using-superpowers`-style bootstrap behavior is added.
+No extra bootstrap behavior is added.

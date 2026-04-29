@@ -108,7 +108,7 @@ function loadBundledAgents() {
   return agents;
 }
 
-export const OpDevSuperpowersPlugin = async () => ({
+export const AgenticWorkflowsPlugin = async () => ({
   config: async (config) => {
     config.skills = config.skills || {};
     config.skills.paths = config.skills.paths || [];

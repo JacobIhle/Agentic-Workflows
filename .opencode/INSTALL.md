@@ -1,4 +1,4 @@
-# Installing OP Dev Superpowers for OpenCode
+# Installing agentic-workflows for OpenCode
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ Add the plugin to the `plugin` array in your project's `opencode.json`:
 
 ```json
 {
-  "plugin": ["op-dev-superpowers@git+https://github.com/JacobIhle/OP-Dev-Superpowers.git"]
+  "plugin": ["agentic-workflows@git+https://github.com/JacobIhle/agentic-workflows.git"]
 }
 ```
 
@@ -20,7 +20,7 @@ This plugin is intended to be installed per project, not globally.
 
 ## What gets installed
 
-This plugin packages the OpenCode version of the original `CC-Dev-Superpowers` methodology:
+This plugin packages the OpenCode workflow bundle:
 
 - Skills:
   - `feature-development-workflow`
@@ -55,6 +55,6 @@ To pin a version:
 
 ```json
 {
-  "plugin": ["op-dev-superpowers@git+https://github.com/JacobIhle/OP-Dev-Superpowers.git#v0.1.0"]
+  "plugin": ["agentic-workflows@git+https://github.com/JacobIhle/agentic-workflows.git#v0.2.0"]
 }
 ```

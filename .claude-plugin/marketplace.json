@@ -1,0 +1,12 @@
+{
+  "name": "agentic-workflows",
+  "owner": {
+    "name": "JacobIhle"
+  },
+  "plugins": [
+    {
+      "name": "agentic-workflows",
+      "source": "./"
+    }
+  ]
+}
