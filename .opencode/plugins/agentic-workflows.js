@@ -6,6 +6,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '../..');
 const skillsDir = path.join(repoRoot, 'skills');
 const agentsDir = path.join(repoRoot, 'agents');
+const permissionsPath = path.join(repoRoot, 'config', 'permissions.json');
+
+function loadPermissions() {
+  return JSON.parse(fs.readFileSync(permissionsPath, 'utf8'));
+}
 
 function parseFrontmatter(markdown) {
   const match = markdown.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
@@ -59,31 +64,22 @@ function normalizeDescription(value) {
 }
 
 function getAgentPermission(name) {
-  if (name === 'code-reviewer') {
-    return {
-      edit: 'deny',
-      bash: {
-        '*': 'deny',
-        'git diff*': 'allow',
-        'git log*': 'allow',
-        'git status*': 'allow',
-      },
-    };
+  const permissions = loadPermissions();
+  const agent = permissions.opencode.agents[name];
+
+  if (!agent) {
+    return undefined;
   }
 
-  if (name === 'docs-maintainer') {
-    return {
-      edit: 'allow',
-      bash: {
-        '*': 'deny',
-        'git diff*': 'allow',
-        'git log*': 'allow',
-        'git status*': 'allow',
-      },
-    };
+  const bash = { '*': 'deny' };
+  for (const command of agent.bashAllow) {
+    bash[command] = 'allow';
   }
 
-  return undefined;
+  return {
+    edit: agent.edit,
+    bash,
+  };
 }
 
 function loadBundledAgents() {

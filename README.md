@@ -47,3 +47,17 @@ This repo keeps the shared methodology content in `skills/` and `agents/`, then 
 - Claude Code: `.claude-plugin/`, `settings.json`, and `CLAUDE.md` provide the Claude-compatible plugin layer.
 
 No extra bootstrap behavior is added.
+
+## Updating permissions
+
+Permission changes are intentionally centralized.
+
+- Edit `config/permissions.json`
+- Run `npm run generate:permissions`
+
+That keeps both platforms aligned:
+
+- OpenCode reads agent permissions from `config/permissions.json` at runtime
+- Claude Code uses the generated `settings.json`
+
+When using either agent system to make permission changes, the agent should update `config/permissions.json` first, then regenerate derived files rather than editing `settings.json` directly.

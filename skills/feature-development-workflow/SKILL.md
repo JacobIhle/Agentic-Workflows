@@ -20,6 +20,7 @@ This is the default pipeline for any non-trivial code-writing task. Follow it un
 ## Optional steps
 
 - **Security review.** For changes that touch authentication, authorization, input handling at trust boundaries, secrets management, or cryptographic code, run the built-in `/security-review` skill (or invoke a security-reviewer subagent if one exists in this project) before merging.
+- **Permission changes.** If the task changes command access or tool permissions, edit `config/permissions.json` first, then run `npm run generate:permissions`. Do not edit `settings.json` directly.
 
 ## When to skip the pipeline
 
