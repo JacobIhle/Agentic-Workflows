@@ -4,7 +4,7 @@ Use this template when dispatching a code quality reviewer subagent.
 
 ```
 Task tool (code-reviewer):
-  Review the completed task after spec compliance passes.
+  Review the full implemented spec after spec compliance passes.
 
   Provide:
   - strengths

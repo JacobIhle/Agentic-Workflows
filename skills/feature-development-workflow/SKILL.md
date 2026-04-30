@@ -22,6 +22,7 @@ This is the default pipeline for any non-trivial code-writing task. Follow it un
 - Subagents should follow `test-driven-development` for the code they write.
 - Permission changes must start in `config/permissions.json`, then run `npm run generate:permissions`.
 - Review loops are part of the workflow. Do not move on with open review findings.
+- Tests should favor real runtime behavior and drift-prone contracts. Prefer tests that protect meaningful behavior or contracts over tests that only assert file presence or specific prose, unless that text is itself the contract being protected.
 
 ## Optional steps
 

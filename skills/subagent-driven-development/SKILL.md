@@ -1,11 +1,11 @@
 ---
 name: subagent-driven-development
-description: Use when executing an implementation plan in the current session. Dispatch a fresh subagent per task, review for spec compliance first, then review code quality.
+description: Use when executing an implementation plan in the current session. Implement the full approved spec first, then review for spec compliance and code quality with fresh fixer passes.
 ---
 
 # Subagent-Driven Development
 
-Execute a plan by dispatching a fresh implementer subagent per task, then running two review stages after each task:
+Execute a plan by dispatching an implementer for the full approved spec, then running staged review passes with fresh fixer agents:
 
 1. spec compliance review
 2. code quality review
@@ -16,24 +16,25 @@ This is the default execution path after `writing-plans` for non-trivial work.
 
 ## Process
 
-1. Read the plan and extract all tasks with their full text.
-2. For each task:
-   - dispatch an implementer subagent using `implementer-prompt.md`
-   - if the subagent asks questions, answer them before work continues
-   - when implementation is done, dispatch a spec reviewer using `spec-reviewer-prompt.md`
-   - if spec issues exist, have the implementer fix them and re-review
-   - once spec compliance passes, dispatch a code quality reviewer using `code-quality-reviewer-prompt.md`
-   - if quality issues exist, have the implementer fix them and re-review
-3. After all tasks are done, dispatch the final `code-reviewer` agent for the overall change.
+1. Read the plan and approved spec, then extract the full implementation scope.
+2. Dispatch one implementer using `implementer-prompt.md` to build the full approved spec.
+3. If the implementer asks questions, answer them before work continues.
+4. After the full approved spec is implemented, dispatch a spec reviewer using `spec-reviewer-prompt.md`.
+5. If spec issues exist, dispatch a fresh fixer using `fixer-prompt.md`, then re-run spec review until the implementation is spec-clean.
+6. Once spec compliance passes, dispatch a code quality reviewer using `code-quality-reviewer-prompt.md`.
+7. If code quality issues exist, dispatch a fresh fixer using `fixer-prompt.md`, then re-run code quality review until the implementation is quality-clean.
+8. After both review stages pass, dispatch the final `code-reviewer` agent for the overall change.
 
 ## Rules
 
-- Use a fresh implementer subagent per task.
+- The implementer builds the full approved spec before review begins.
 - Do not skip the spec compliance review.
 - Do not start code quality review before spec compliance passes.
-- Do not move to the next task while review issues remain open.
+- Do not treat the implementation as complete while review issues remain open.
 - The implementer may ask clarifying questions before or during work.
-- The same implementer should fix issues found in review for that task.
+- Use a fresh fixer by default when review findings must be addressed.
+- The fixer is narrow: fix only the listed findings, avoid unrelated changes, and stop and report if a finding appears incorrect.
+- Fresh fixer passes are preferred over sending review findings back to the original implementer.
 
 ## Integration
 

@@ -21,3 +21,9 @@ When you need to clone an external repo, download reference material, or create 
 ## Code style
 
 Style rules are derived from canonical example files and codified in the skills in this plugin. Until a more specific convention exists, follow the conventions of the surrounding code in the consuming project.
+
+## Test strategy
+
+Prefer tests that verify real behavior, generated output, or drift-prone contracts.
+
+Favor tests that protect meaningful behavior or contracts. Be cautious about tests whose only assertion is that a file exists or that prose contains particular wording; keep those only when the text itself is the contract, such as generated output or injected bootstrap guidance.

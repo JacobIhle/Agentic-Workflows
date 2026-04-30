@@ -4,13 +4,17 @@ Use this template when dispatching an implementer subagent.
 
 ```
 Task tool:
-  description: "Implement Task N: [task name]"
+  description: "Implement approved spec: [feature name]"
   prompt: |
-    You are implementing Task N: [task name]
+    You are implementing the approved spec for: [feature name]
 
-    ## Task Description
+    ## Approved Spec
 
-    [FULL TEXT of task from plan - paste it here]
+    [FULL TEXT of the approved spec - paste it here]
+
+    ## Implementation Plan
+
+    [Relevant plan summary or task list]
 
     ## Context
 
@@ -22,7 +26,7 @@ Task tool:
 
     ## Your Job
 
-    1. Implement exactly what the task specifies
+    1. Implement the full approved spec
     2. Write tests and follow TDD where appropriate
     3. Verify the implementation works
     4. Self-review your work

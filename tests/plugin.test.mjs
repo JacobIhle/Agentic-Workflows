@@ -149,3 +149,14 @@ test('opencode plugin injects orchestrator bootstrap guidance', async () => {
   assert.match(firstUserText, /trivial tasks directly/i);
   assert.match(firstUserText, /brainstorming/i);
 });
+
+test('subagent workflow implements full spec before review and uses fresh fixer loop', () => {
+  const skill = fs.readFileSync(
+    path.join(projectRoot, 'skills', 'subagent-driven-development', 'SKILL.md'),
+    'utf8'
+  );
+
+  assert.match(skill, /full approved spec/i);
+  assert.match(skill, /fresh fixer/i);
+  assert.match(skill, /stop and report/i);
+});

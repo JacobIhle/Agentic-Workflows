@@ -47,9 +47,32 @@ For non-trivial work, the orchestrator should quietly route into this chain:
 3. user approval of the spec
 4. `writing-plans`
 5. immediate handoff to `subagent-driven-development`
-6. final review and docs maintenance when applicable
+6. staged review and fix loop
+7. final review and docs maintenance when applicable
 
 There is only one required human gate in this flow: spec approval. There is no separate approval step between plan creation and implementation.
+
+### Post-implementation review loop
+
+Once the full approved spec has been implemented, the workflow should review and fix the whole change in stages rather than reviewing each task independently.
+
+The default loop is:
+
+1. implementer completes the full approved spec
+2. spec-compliance reviewer checks whether the implementation matches the spec
+3. if issues exist, a fresh fixer agent addresses only those spec-review findings
+4. spec-compliance review runs again until the change is spec-clean
+5. code-quality reviewer checks the resulting implementation for bugs, risky assumptions, weak tests, and maintainability issues
+6. if issues exist, a fresh fixer agent addresses only those code-quality findings
+7. code-quality review runs again until the change is quality-clean
+
+The same implementer should not fix review findings by default. A fresh fixer is preferred because it is less likely to defend the original implementation.
+
+The fixer role should be narrow:
+
+- fix only the listed review findings
+- avoid unrelated refactors or feature additions
+- stop and report if a review finding appears incorrect, rather than silently overriding it
 
 ### Routing behavior
 
@@ -88,6 +111,8 @@ The orchestrator may work broadly across languages through the generic core, but
 This keeps the default user experience simple while preserving a stronger workflow for larger work. Users get one main assistant, but non-trivial tasks still receive structured design, planning, and subagent execution.
 
 The conservative threshold means some borderline tasks will go through more process than strictly necessary. That is acceptable because it reduces the risk of building the wrong thing or skipping useful design work.
+
+Reviewing after the full spec implementation, rather than after every task, reduces token overhead while still giving the workflow multiple fresh-agent checks before completion. The tradeoff is that some issues are found later, but that is acceptable for the current autonomy and cost goals.
 
 This also keeps the orchestrator from becoming a blob. Routing stays simple and skills remain the source of actual behavior.
 
