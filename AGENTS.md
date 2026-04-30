@@ -1,7 +1,5 @@
 # agentic-workflows
 
-Generated from `AGENTS.md`. Do not edit directly.
-
 This file is the canonical shared context for agentic-workflows. Platform-specific context files should be generated from it instead of maintained manually.
 
 ## Default workflow for code-writing tasks

@@ -160,3 +160,11 @@ test('subagent workflow implements full spec before review and uses fresh fixer 
   assert.match(skill, /fresh fixer/i);
   assert.match(skill, /stop and report/i);
 });
+
+test('CLAUDE.md exactly matches generated content from AGENTS.md', async () => {
+  const { renderClaudeMd } = await import('../scripts/generate-context-files.mjs');
+  const agentsMd = fs.readFileSync(path.join(projectRoot, 'AGENTS.md'), 'utf8');
+  const currentClaudeMd = fs.readFileSync(path.join(projectRoot, 'CLAUDE.md'), 'utf8');
+
+  assert.equal(currentClaudeMd, renderClaudeMd(agentsMd));
+});
