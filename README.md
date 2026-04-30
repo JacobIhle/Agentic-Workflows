@@ -31,12 +31,10 @@ See `.opencode/INSTALL.md`.
 
 Install it at the project level in the consuming repository's `opencode.json`.
 
-Copy-paste for the current project:
+Project-local install instructions:
 
-```json
-{
-  "plugin": ["agentic-workflows@git+https://github.com/JacobIhle/Agentic-Workflows.git"]
-}
+```text
+Go to https://github.com/JacobIhle/Agentic-Workflows/blob/main/.opencode/INSTALL.md and follow the instructions.
 ```
 
 ### Claude Code
