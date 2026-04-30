@@ -8,6 +8,18 @@ It provides a shared development workflow across both toolchains:
 - clean-context code review
 - documentation maintenance when user-visible behavior changes
 
+## Capability strategy
+
+This repository stays intentionally small:
+
+- one shared general workflow core
+- one first-class .NET path
+- broad generic fallback for everything else
+
+Project stack selection is expected to come from consuming repo docs, with `AGENTS.md` preferred, then `CLAUDE.md`, then `README.md`.
+
+See `docs/adr/0001-dotnet-first-with-generic-fallback.md` for the current direction.
+
 ## Install
 
 ### OpenCode
