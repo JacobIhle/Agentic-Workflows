@@ -53,4 +53,6 @@ Use consuming repo docs as the source of stack context:
 2. `CLAUDE.md`
 3. `README.md`
 
+If those docs say the repo is `.NET` or `C#`, load and apply `dotnet-development`.
+
 Do not inspect the codebase deeply just to guess the stack.
