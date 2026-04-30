@@ -5,17 +5,23 @@ description: Use when implementing a new feature, fixing a bug, adding behavior,
 
 # Feature Development Workflow
 
-This is the default pipeline for any non-trivial code-writing task. Follow it unless the user explicitly opts out, the task is a throwaway script, or the change is doc-only.
+This is the default pipeline for any non-trivial code-writing task. Follow it unless the user explicitly opts out, the task is a throwaway script, the change is doc-only, or the work is trivial enough to not justify planning overhead.
 
 ## Pipeline
 
-1. **Write a failing test first.** Apply the `test-driven-development` skill. The test names the behavior you're about to add and proves it doesn't exist yet (red).
-2. **Write the minimum code to pass.** No extras. Run the test to confirm green.
-3. **Refactor with green tests.** Improve clarity, remove duplication, tighten naming. Tests stay green throughout.
-4. **Repeat per behavior.** One test, one slice of code, one green run, before moving on.
-5. **At the end of a coherent unit, dispatch the `code-reviewer` subagent.** A coherent unit is the smallest thing that stands on its own - a feature, bug fix, or refactor with a clear scope. The reviewer runs in a clean context: it has no memory of how the code was written, so it sees the result, not the journey.
-6. **Address `Critical` findings before moving on.** `Worth considering` items go on a list for later or get raised with the user.
-7. **Dispatch the `docs-maintainer` subagent** if the change affected anything user-visible: public API, CLI flags, install steps, architectural shape, configuration. Skip if the change is purely internal.
+1. **Start with `brainstorming`.** Clarify requirements, ask focused questions, propose approaches, and write a spec.
+2. **Get spec approval.** The approved spec is the human checkpoint for non-trivial work.
+3. **Invoke `writing-plans`.** Turn the approved spec into an implementation plan.
+4. **Start execution immediately.** `writing-plans` should hand off directly to `subagent-driven-development` without asking for another approval.
+5. **Implement through task-by-task subagents.** Each task is implemented, checked for spec compliance, then reviewed for code quality.
+6. **Dispatch the final `code-reviewer` subagent.** Review the overall change after implementation is complete.
+7. **Dispatch the `docs-maintainer` subagent** if the change affected anything user-visible: public API, CLI flags, install steps, architectural shape, or configuration.
+
+## During execution
+
+- Subagents should follow `test-driven-development` for the code they write.
+- Permission changes must start in `config/permissions.json`, then run `npm run generate:permissions`.
+- Review loops are part of the workflow. Do not move on with open review findings.
 
 ## Optional steps
 

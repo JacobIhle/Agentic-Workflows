@@ -7,9 +7,23 @@ const repoRoot = path.resolve(__dirname, '../..');
 const skillsDir = path.join(repoRoot, 'skills');
 const agentsDir = path.join(repoRoot, 'agents');
 const permissionsPath = path.join(repoRoot, 'config', 'permissions.json');
+const orchestratorSkillPath = path.join(repoRoot, 'skills', 'orchestrating-workflows', 'SKILL.md');
 
 function loadPermissions() {
   return JSON.parse(fs.readFileSync(permissionsPath, 'utf8'));
+}
+
+function getOrchestratorBootstrap() {
+  if (!fs.existsSync(orchestratorSkillPath)) {
+    return null;
+  }
+
+  return [
+    'You should use `orchestrating-workflows` as the default workflow policy.',
+    'Handle trivial tasks directly.',
+    'For non-trivial work, route through `brainstorming`, spec approval, `writing-plans`, and `subagent-driven-development`.',
+    'Only interrupt the user for spec approval, destructive actions, or real blockers.',
+  ].join(' ');
 }
 
 function parseFrontmatter(markdown) {
@@ -121,5 +135,23 @@ export const AgenticWorkflowsPlugin = async () => ({
         config.agent[name] = agentConfig;
       }
     }
+  },
+  'experimental.chat.messages.transform': async (_input, output) => {
+    const bootstrap = getOrchestratorBootstrap();
+    if (!bootstrap || !output.messages.length) {
+      return;
+    }
+
+    const firstUser = output.messages.find((message) => message.info.role === 'user');
+    if (!firstUser || !firstUser.parts.length) {
+      return;
+    }
+
+    if (firstUser.parts.some((part) => part.type === 'text' && part.text.includes('orchestrating-workflows'))) {
+      return;
+    }
+
+    const ref = firstUser.parts[0];
+    firstUser.parts.unshift({ ...ref, type: 'text', text: bootstrap });
   },
 });

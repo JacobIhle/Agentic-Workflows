@@ -115,3 +115,37 @@ test('workflow skill tells agents to edit canonical permissions instead of setti
   assert.match(workflowSkill, /generate:permissions/);
   assert.match(workflowSkill, /Do not edit `settings\.json` directly/i);
 });
+
+test('orchestrator skill defines trivial-direct and non-trivial routed workflow', () => {
+  const orchestratorSkill = fs.readFileSync(
+    path.join(projectRoot, 'skills', 'orchestrating-workflows', 'SKILL.md'),
+    'utf8'
+  );
+
+  assert.match(orchestratorSkill, /trivial tasks.*directly/i);
+  assert.match(orchestratorSkill, /brainstorming/i);
+  assert.match(orchestratorSkill, /writing-plans/i);
+  assert.match(orchestratorSkill, /subagent-driven-development/i);
+});
+
+test('opencode plugin injects orchestrator bootstrap guidance', async () => {
+  const { AgenticWorkflowsPlugin } = await import('../.opencode/plugins/agentic-workflows.js');
+  const plugin = await AgenticWorkflowsPlugin({ directory: projectRoot, client: null });
+  const output = {
+    messages: [
+      {
+        info: { role: 'user' },
+        parts: [{ type: 'text', text: 'Implement a feature' }],
+      },
+    ],
+  };
+
+  assert.equal(typeof plugin['experimental.chat.messages.transform'], 'function');
+
+  await plugin['experimental.chat.messages.transform']({}, output);
+
+  const firstUserText = output.messages[0].parts[0].text;
+  assert.match(firstUserText, /orchestrating-workflows/i);
+  assert.match(firstUserText, /trivial tasks directly/i);
+  assert.match(firstUserText, /brainstorming/i);
+});

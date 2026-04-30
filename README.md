@@ -4,7 +4,10 @@ Portable development workflows for OpenCode and Claude Code.
 
 It provides a shared development workflow across both toolchains:
 
-- tests first
+- a quiet orchestrator as the default assistant behavior
+- brainstorming and spec creation for non-trivial work
+- plan generation from approved specs
+- subagent-driven implementation by default
 - clean-context code review
 - documentation maintenance when user-visible behavior changes
 
@@ -45,7 +48,11 @@ Install the plugin from the repository:
 
 ### Skills
 
-- `feature-development-workflow` - the default pipeline (TDD -> review -> docs).
+- `feature-development-workflow` - the default non-trivial workflow (brainstorm -> spec -> plan -> subagent execution -> review -> docs).
+- `orchestrating-workflows` - the default routing policy for the main assistant.
+- `brainstorming` - asks questions, proposes approaches, writes specs, and gets approval.
+- `writing-plans` - writes implementation plans from approved specs and immediately starts execution.
+- `subagent-driven-development` - executes plans through fresh subagents and staged reviews.
 - `test-driven-development` - red/green/refactor methodology.
 - `reviewing-code` - used by the code-reviewer agent.
 - `writing-documentation` - README and ADR conventions.

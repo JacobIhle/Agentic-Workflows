@@ -6,13 +6,11 @@ This file ships with the `agentic-workflows` plugin. It restates the conventions
 
 For any non-trivial production code change, follow the `feature-development-workflow` skill:
 
-1. Write a failing test first (`test-driven-development` skill).
-2. Write the minimum code to pass.
-3. Refactor with green tests.
-4. Loop until the unit is complete.
-5. Dispatch the `code-reviewer` subagent for a clean-context review.
-6. Address critical findings.
-7. Dispatch the `docs-maintainer` subagent if the change affected anything user-visible.
+1. Use `brainstorming` to clarify the work and write a spec.
+2. Get approval on the spec.
+3. Use `writing-plans` to create the implementation plan.
+4. Start `subagent-driven-development` immediately after the plan is written.
+5. Dispatch the `docs-maintainer` subagent if the change affected anything user-visible.
 
 Skip the pipeline for throwaway scripts, doc-only changes, and trivial mechanical edits. Honor explicit user opt-out.
 

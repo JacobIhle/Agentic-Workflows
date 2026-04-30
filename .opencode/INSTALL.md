@@ -18,6 +18,8 @@ Restart OpenCode.
 
 This plugin is intended to be installed per project, not globally.
 
+The default assistant behavior is quietly orchestrated by the plugin: trivial work stays direct, while non-trivial work is routed into the full workflow.
+
 ## What gets installed
 
 This plugin packages the OpenCode workflow bundle:
