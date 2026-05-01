@@ -31,18 +31,22 @@ See `.opencode/INSTALL.md`.
 
 Install it at the project level in the consuming repository's `opencode.json`.
 
-Project-local install instructions:
+Project-local install instructions for this repo only:
 
 ```text
 Go to https://github.com/JacobIhle/Agentic-Workflows/blob/main/.opencode/INSTALL.md and follow the instructions.
 ```
 
+Those instructions install the plugin in this project's `opencode.json`, not in the global OpenCode config.
+
 ### Claude Code
 
-Install the plugin from the repository:
+Add this repository as a marketplace, then install the plugin from that marketplace:
 
 ```text
-/plugin install https://github.com/JacobIhle/agentic-workflows
+/plugin marketplace add JacobIhle/agentic-workflows
+/plugin install agentic-workflows@agentic-workflows
+/reload-plugins
 ```
 
 ## What's in the plugin
