@@ -1,6 +1,6 @@
 {
   "name": "agentic-workflows",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Portable development workflows for Claude Code and OpenCode: TDD-first, clean-context review, and documentation that stays in sync.",
   "author": {
     "name": "JacobIhle"

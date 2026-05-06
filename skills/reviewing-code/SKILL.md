@@ -15,6 +15,8 @@ Review the changes, not the whole codebase. Get the diff: `git diff <base>...HEA
 
 ### Correctness
 - Does the code actually do what the change claims to do?
+- For external integration claims, was the behavior actually live verified, or does the change clearly disclose that live external behavior remains unconfirmed?
+- Treat missing live-verification disclosure as a correctness finding when the change claims an external integration works but only local or mocked verification is shown.
 - Edge cases: null / empty / zero / negative inputs, boundaries, unicode, timezones, locale.
 - Error paths: are failures handled, or swallowed, or rethrown without context?
 - Concurrency: shared state without synchronization, races, deadlocks, async/await misuse, fire-and-forget tasks.

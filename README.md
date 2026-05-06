@@ -68,6 +68,10 @@ Add this repository as a marketplace, then install the plugin from that marketpl
 - `writing-documentation` - README and ADR conventions.
 - `maintaining-documentation` - used by the docs-maintainer agent for in-sync edits.
 
+Specs and plans are temporary workflow artifacts by default. Maintainers should still create them for non-trivial work, but delete them after successful implementation and verification unless they were explicitly kept or promoted into durable docs such as `docs/adr/` or maintained README content.
+
+For external integrations, maintainers should distinguish local or mocked verification, local integration verification, and live external verification. The first real external request in a task requires approval, approved live verification may be reused within the same task if the request shape does not materially change, and agents must disclose when live external behavior remains unconfirmed.
+
 ## Platform support
 
 This repo keeps the shared methodology content in `skills/` and `agents/`, then exposes it through both plugin systems:
@@ -76,6 +80,15 @@ This repo keeps the shared methodology content in `skills/` and `agents/`, then 
 - Claude Code: `.claude-plugin/`, `settings.json`, and `CLAUDE.md` provide the Claude-compatible plugin layer.
 
 No extra bootstrap behavior is added.
+
+## Release and versioning
+
+- `package.json` is the canonical version source for this repository.
+- Intentional shipped changes must bump the version and keep `.claude-plugin/plugin.json` aligned with it.
+- Agents should update the version as part of intentional shipped changes and use judgment when choosing a patch, minor, or major bump.
+- Prefer `npm run release -- <version>` to update both version files together.
+- Consuming repos pick up updates in OpenCode by restarting after pulling the new Git ref or by moving any pinned ref to the newer version.
+- Claude Code consumers pick up updates by reloading or reinstalling the plugin after updating to the newer version.
 
 ## Updating permissions
 

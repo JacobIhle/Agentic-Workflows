@@ -23,6 +23,10 @@ This is the default pipeline for any non-trivial code-writing task. Follow it un
 - Permission changes must start in `config/permissions.json`, then run `npm run generate:permissions`.
 - Review loops are part of the workflow. Do not move on with open review findings.
 - Tests should favor real runtime behavior and drift-prone contracts. Prefer tests that protect meaningful behavior or contracts over tests that only assert file presence or specific prose, unless that text is itself the contract being protected.
+- Distinguish verification levels: local or mocked verification, local integration verification, and live external verification. Only claim the highest level actually verified.
+- The first real external request in a task requires approval, including read-only or conventional `GET` requests.
+- Once the user approves a live verification request shape, the approved live verification request may be reused within the same task without asking again. If the method, endpoint, auth scope, or request shape changes materially, ask again.
+- Do not claim a live external integration works unless an approved live verification request succeeded. If only local or mocked verification ran, say that local or mocked verification passed and live external behavior remains unconfirmed.
 
 ## Optional steps
 
