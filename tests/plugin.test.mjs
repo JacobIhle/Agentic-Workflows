@@ -310,6 +310,23 @@ test('writing-plans skill keeps plans required but temporary by default', () => 
   assert.match(skill, /user explicitly asks to keep it/i);
 });
 
+test('active repo-owned workflow skills require project-local tmp workspaces', () => {
+  const workflowSkills = [
+    path.join(projectRoot, 'skills', 'brainstorming', 'SKILL.md'),
+    path.join(projectRoot, 'skills', 'writing-plans', 'SKILL.md'),
+    path.join(projectRoot, 'skills', 'feature-development-workflow', 'SKILL.md'),
+    path.join(projectRoot, 'skills', 'subagent-driven-development', 'SKILL.md'),
+    path.join(projectRoot, 'skills', 'orchestrating-workflows', 'SKILL.md'),
+  ];
+
+  for (const skillPath of workflowSkills) {
+    const skill = fs.readFileSync(skillPath, 'utf8');
+
+    assert.match(skill, /`\.\/tmp\/` at the project root/i);
+    assert.match(skill, /do not use `\/tmp\/` or other system temp directories/i);
+  }
+});
+
 test('repo guidance distinguishes transient workflow artifacts from durable docs', () => {
   const agents = fs.readFileSync(path.join(projectRoot, 'AGENTS.md'), 'utf8');
   const readme = fs.readFileSync(path.join(projectRoot, 'README.md'), 'utf8');

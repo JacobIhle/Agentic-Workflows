@@ -41,6 +41,8 @@ Do not write code, invoke implementation skills, or scaffold anything until you 
 - Keep the design small and intentional.
 - Prefer clear boundaries and well-defined interfaces.
 - Avoid speculative complexity.
+- For repository-related scratch work, use `./tmp/` at the project root.
+- Do not use `/tmp/` or other system temp directories for repository-related scratch work.
 
 ## Spec retention
 

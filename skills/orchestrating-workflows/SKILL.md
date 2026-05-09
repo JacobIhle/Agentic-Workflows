@@ -43,6 +43,7 @@ Do not add another approval gate between plan creation and implementation.
 - code review requests: route to `reviewing-code` and/or `code-reviewer`
 - docs-only requests: route to `writing-documentation`, `maintaining-documentation`, or `docs-maintainer`
 - permission changes: edit `config/permissions.json` first, then run `npm run generate:permissions`
+- for repository-related scratch work, use `./tmp/` at the project root and do not use `/tmp/` or other system temp directories
 - destructive or risky actions: always ask before proceeding
 
 ## Stack selection
