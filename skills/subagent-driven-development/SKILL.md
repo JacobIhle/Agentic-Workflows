@@ -35,8 +35,6 @@ This is the default execution path after `writing-plans` for non-trivial work.
 - Use a fresh fixer by default when review findings must be addressed.
 - The fixer is narrow: fix only the listed findings, avoid unrelated changes, and stop and report if a finding appears incorrect.
 - Fresh fixer passes are preferred over sending review findings back to the original implementer.
-- For repository-related scratch work, use `./tmp/` at the project root.
-- Do not use `/tmp/` or other system temp directories for repository-related scratch work.
 
 ## Integration
 

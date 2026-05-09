@@ -20,10 +20,6 @@ Specs in `docs/specs/` and plans in `docs/plans/` are temporary workflow artifac
 
 Durable documentation stays separate from transient workflow artifacts. `docs/adr/` and maintained `README` content are durable documentation and should be kept when they are the right long-lived home for the guidance.
 
-## Temporary workspaces
-
-When you need to clone an external repo, download reference material, or create scratch files for analysis, put them in `./tmp/` at the project root - never in `/tmp/` or other system directories. Reads inside the project are easier to access and cleanup stays local. The consuming project should have `tmp/` in its `.gitignore`.
-
 ## Code style
 
 Style rules are derived from canonical example files and codified in the skills in this plugin. Until a more specific convention exists, follow the conventions of the surrounding code in the consuming project.
