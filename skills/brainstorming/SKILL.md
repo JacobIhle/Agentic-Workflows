@@ -42,6 +42,14 @@ Do not write code, invoke implementation skills, or scaffold anything until you 
 - Prefer clear boundaries and well-defined interfaces.
 - Avoid speculative complexity.
 
+## Spec retention
+
+- The spec is a temporary workflow artifact by default.
+- Keep writing specs for non-trivial work and save them under `docs/specs/` during the workflow.
+- Delete the spec by default after successful implementation and verification.
+- Keep it when the user explicitly asks to keep it or when the content should become durable project documentation.
+- Promote durable design records into long-lived docs such as `docs/adr/` instead of leaving transient workflow artifacts behind.
+
 ## Spec review checklist
 
 Before asking for approval, verify:

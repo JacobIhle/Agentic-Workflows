@@ -13,7 +13,8 @@ Follow the methodology in the `reviewing-code` skill.
 1. **Scope the review.** Get the diff with `git diff <base>...HEAD` (or against `main` if no base is given), or read the specific files the user names. Do not review code outside the change unless you need surrounding context to judge it.
 2. **Read enough context to judge each finding.** A diff alone is rarely enough - open the surrounding file when behavior depends on it.
 3. **Apply the `reviewing-code` skill.** Walk its categories: correctness, stability, security.
-4. **Report.** Group by severity. Be concrete: `path:line` + what's wrong + what to do.
+4. **Check external integration claims carefully.** If the change says an API or service works but only local or mocked verification is evident, missing live-verification disclosure is a correctness finding.
+5. **Report.** Group by severity. Be concrete: `path:line` + what's wrong + what to do.
 
 ## Output shape
 

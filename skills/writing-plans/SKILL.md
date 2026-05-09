@@ -29,6 +29,14 @@ Write a concrete implementation plan from an approved spec. The plan should be s
 - Keep the plan aligned to the approved spec.
 - Do not add a second approval gate between plan and implementation.
 
+## Plan retention
+
+- The plan is a temporary workflow artifact by default.
+- Keep writing plans for non-trivial work and save them under `docs/plans/` during the workflow.
+- Delete the plan by default after successful implementation and verification.
+- Keep it when the user explicitly asks to keep it or when the content should become durable project documentation.
+- Promote durable records into long-lived docs such as `docs/adr/` or maintained `README` content instead of leaving transient workflow artifacts behind.
+
 ## Plan review checklist
 
 Before execution starts, verify:

@@ -20,6 +20,7 @@ Red, green, refactor. One behavior at a time, in tight loops.
 - **One behavior per test.** Multiple assertions are fine when they describe one behavior; keep tests focused so a failure points at one thing.
 - **Edge cases get their own tests.** Null/empty/zero/negative/boundary inputs are separate behaviors.
 - **Bugs get a regression test first.** Before fixing, write a test that reproduces the bug. Confirm it fails. Then fix. The test stays as a regression guard.
+- **Tests do not prove live external access.** Local and mocked tests can prove local behavior, but they do not prove a real external API, auth flow, or remote service works live.
 
 ## Anti-patterns
 
