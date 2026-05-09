@@ -28,6 +28,8 @@ Write a concrete implementation plan from an approved spec. The plan should be s
 - Follow TDD in the steps for code changes.
 - Keep the plan aligned to the approved spec.
 - Do not add a second approval gate between plan and implementation.
+- For repository-related scratch work, use `./tmp/` at the project root.
+- Do not use `/tmp/` or other system temp directories for repository-related scratch work.
 
 ## Plan retention
 
